@@ -1,0 +1,1180 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Training · 5 Pillars</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* === ATHLETIC DARK · MINERAL CARBON × PINE === */
+  --bg: #0A0E0F;
+  --surface: #11171A;
+  --surface-2: #1A2226;
+  --surface-3: #232C31;
+  --rule: #2A353B;
+  --rule-soft: #1F272B;
+
+  --ink: #ECEFF1;
+  --ink-2: #B4BDC2;
+  --ink-soft: #7A8488;
+  --ink-mute: #4D5559;
+
+  --pine-deep: #0C2A20;
+  --pine: #134C39;
+  --pine-2: #1B6A4D;
+  --action: #18D67A;
+  --action-glow: rgba(24, 214, 122, 0.18);
+
+  --flame: #FF5A2E;
+  --flame-soft: rgba(255, 90, 46, 0.14);
+  --gold: #FFB627;
+  --ice: #6FBFFF;
+
+  --font-display: 'Saira Condensed', 'Arial Narrow', sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: 14px; line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  background-image: radial-gradient(at 100% 0%, rgba(19, 76, 57, 0.08) 0%, transparent 50%),
+                    radial-gradient(at 0% 100%, rgba(24, 214, 122, 0.03) 0%, transparent 50%);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+body { padding: 24px 20px 80px; max-width: 1320px; margin: 0 auto; }
+
+.display, h1, h2.big, .num { font-family: var(--font-display); letter-spacing: -0.005em; }
+.mono { font-family: var(--font-mono); font-feature-settings: 'tnum' on, 'zero' on; }
+.upper { text-transform: uppercase; letter-spacing: 0.08em; }
+
+/* ── HEADER ─────────────────────────── */
+header.top {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  padding-bottom: 20px; border-bottom: 1px solid var(--rule); margin-bottom: 28px;
+  gap: 20px; flex-wrap: wrap;
+}
+header .title-block .doc-id {
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--action); margin-bottom: 8px;
+}
+header h1 {
+  font-family: var(--font-display); font-size: 44px; font-weight: 800;
+  text-transform: uppercase; letter-spacing: -0.01em; line-height: 0.95;
+}
+header h1 .accent { color: var(--action); }
+header .sub { color: var(--ink-soft); font-size: 13px; margin-top: 6px; max-width: 480px; }
+
+.meta-strip { display: flex; gap: 28px; flex-wrap: wrap; }
+.meta-strip > div { display: flex; flex-direction: column; gap: 4px; align-items: flex-end; }
+.meta-strip .lbl {
+  font-family: var(--font-mono); font-size: 9px;
+  text-transform: uppercase; letter-spacing: 0.16em; color: var(--ink-mute);
+}
+.meta-strip .val {
+  font-family: var(--font-display); font-size: 22px; font-weight: 700;
+  letter-spacing: -0.01em; color: var(--ink);
+}
+
+/* ── HERO ─────────────────────────── */
+.hero {
+  background: var(--surface); border: 1px solid var(--rule); border-radius: 4px;
+  padding: 32px; margin-bottom: 28px; position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--action) 0%, var(--pine) 30%, transparent 100%);
+}
+.hero-head {
+  display: grid; grid-template-columns: 1fr auto auto; gap: 32px; align-items: end;
+  margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid var(--rule-soft);
+}
+@media (max-width: 768px) { .hero-head { grid-template-columns: 1fr; } }
+.hero-head .week-block .lbl {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--ink-mute); margin-bottom: 6px;
+}
+.hero-head .week-num {
+  font-family: var(--font-display); font-size: 96px; font-weight: 900;
+  line-height: 0.85; letter-spacing: -0.03em;
+}
+.hero-head .week-num .of {
+  font-size: 24px; color: var(--ink-mute); font-weight: 600;
+  margin-left: 8px; letter-spacing: 0;
+}
+.phase-tag {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--pine-deep); border: 1px solid var(--pine);
+  padding: 8px 14px; font-family: var(--font-mono); font-size: 11px;
+  text-transform: uppercase; letter-spacing: 0.12em; color: var(--action);
+  margin-top: 12px;
+}
+.phase-tag::before {
+  content: ''; width: 6px; height: 6px; background: var(--action);
+  border-radius: 50%; box-shadow: 0 0 8px var(--action-glow);
+}
+.streak-block { text-align: right; }
+.streak-block .lbl {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--ink-mute); margin-bottom: 6px;
+}
+.streak-num {
+  font-family: var(--font-display); font-size: 76px; font-weight: 800;
+  color: var(--gold); line-height: 0.85; letter-spacing: -0.02em;
+}
+.streak-block .desc {
+  font-family: var(--font-mono); font-size: 10px; color: var(--ink-soft);
+  margin-top: 4px; letter-spacing: 0.08em;
+}
+
+/* ── PILLAR GRID ─────────────────────── */
+.pillar-row .pillar-title {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--ink-mute); margin-bottom: 16px;
+}
+.pillar-grid {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px;
+}
+@media (max-width: 900px) { .pillar-grid { grid-template-columns: repeat(2, 1fr); } }
+.pillar {
+  background: var(--surface-2); padding: 18px 16px;
+  border: 1px solid var(--rule-soft); position: relative; overflow: hidden;
+  transition: border-color 0.15s ease;
+}
+.pillar:hover { border-color: var(--rule); }
+.pillar::after {
+  content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 3px;
+  background: var(--ink-mute);
+}
+.pillar.p1::after { background: var(--action); }
+.pillar.p2::after { background: var(--ice); }
+.pillar.p3::after { background: var(--flame); }
+.pillar.p4::after { background: var(--gold); }
+.pillar.p5::after { background: var(--pine-2); }
+.pillar .id {
+  font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--ink-mute);
+}
+.pillar .name {
+  font-family: var(--font-display); font-size: 24px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: -0.01em; margin: 6px 0 14px;
+}
+.pillar .progress-bar {
+  height: 4px; background: var(--rule-soft); position: relative; overflow: hidden;
+  margin-bottom: 10px;
+}
+.pillar .progress-fill {
+  height: 100%; background: var(--ink-mute); transition: width 0.4s ease;
+}
+.pillar.p1 .progress-fill { background: var(--action); box-shadow: 0 0 8px var(--action-glow); }
+.pillar.p2 .progress-fill { background: var(--ice); }
+.pillar.p3 .progress-fill { background: var(--flame); }
+.pillar.p4 .progress-fill { background: var(--gold); }
+.pillar.p5 .progress-fill { background: var(--pine-2); }
+.pillar .stat {
+  font-family: var(--font-mono); font-size: 11px; color: var(--ink-soft);
+  letter-spacing: 0.04em;
+}
+.pillar .stat .big { color: var(--ink); font-weight: 600; }
+
+/* ── ROWS ─────────────────────────── */
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+@media (max-width: 900px) { .row { grid-template-columns: 1fr; } }
+.card {
+  background: var(--surface); border: 1px solid var(--rule); border-radius: 4px;
+  padding: 22px; position: relative;
+}
+.card .head {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid var(--rule-soft);
+}
+.card h2.big {
+  font-family: var(--font-display); font-size: 22px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: -0.005em;
+}
+.card .head .meta {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--ink-mute);
+}
+
+/* ── HABITS ─────────────────────────── */
+.habit-list { display: flex; flex-direction: column; gap: 8px; }
+.habit {
+  display: flex; align-items: center; gap: 14px; padding: 14px 16px;
+  background: var(--surface-2); cursor: pointer; user-select: none;
+  border: 1px solid transparent; border-left: 3px solid var(--rule);
+  transition: all 0.15s ease;
+}
+.habit:hover { background: var(--surface-3); border-left-color: var(--ink-soft); }
+.habit.done {
+  background: var(--pine-deep); border-color: var(--pine);
+  border-left-color: var(--action);
+}
+.habit .check {
+  width: 22px; height: 22px; border: 1.5px solid var(--ink-mute);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; background: transparent; transition: all 0.15s ease;
+}
+.habit.done .check { background: var(--action); border-color: var(--action); }
+.habit.done .check::after { content: '✓'; color: var(--bg); font-size: 13px; font-weight: 700; }
+.habit .body { flex: 1; min-width: 0; }
+.habit .name {
+  font-family: var(--font-display); font-size: 16px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.01em; line-height: 1.2;
+}
+.habit .desc {
+  font-family: var(--font-body); font-size: 12px; color: var(--ink-soft);
+  margin-top: 4px;
+}
+.habit .pillar-tag {
+  font-family: var(--font-mono); font-size: 9px; padding: 4px 8px;
+  text-transform: uppercase; letter-spacing: 0.12em; font-weight: 600;
+  border: 1px solid var(--rule); color: var(--ink-soft);
+}
+.habit.done .pillar-tag { border-color: var(--pine-2); color: var(--action); }
+
+/* ── WEEK GRID ─────────────────────── */
+.week-grid {
+  display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-bottom: 16px;
+}
+.day-cell {
+  aspect-ratio: 1; border: 1px solid var(--rule-soft);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 4px; background: var(--surface-2); position: relative;
+}
+.day-cell .dow {
+  font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--ink-mute);
+}
+.day-cell .dom {
+  font-family: var(--font-display); font-size: 20px; font-weight: 700;
+  color: var(--ink-2); line-height: 1;
+}
+.day-cell .label {
+  font-family: var(--font-mono); font-size: 9px; font-weight: 700;
+  margin-top: 2px; letter-spacing: 0.08em; color: var(--ink-mute);
+}
+.day-cell.session-a {
+  background: var(--pine-deep); border-color: var(--action);
+}
+.day-cell.session-a .label, .day-cell.session-a .dom { color: var(--action); }
+.day-cell.session-b {
+  background: rgba(255, 90, 46, 0.08); border-color: var(--flame);
+}
+.day-cell.session-b .label, .day-cell.session-b .dom { color: var(--flame); }
+.day-cell.session-hiit {
+  background: rgba(255, 182, 39, 0.08); border-color: var(--gold);
+}
+.day-cell.session-hiit .label, .day-cell.session-hiit .dom { color: var(--gold); }
+.day-cell.today { box-shadow: inset 0 0 0 2px var(--ink); }
+.day-cell.done::after {
+  content: ''; position: absolute; top: 3px; right: 3px;
+  width: 6px; height: 6px; background: var(--action);
+  box-shadow: 0 0 6px var(--action-glow);
+}
+
+/* ── SESSIONS ─────────────────────── */
+.session-card {
+  border: 1px solid var(--rule-soft); padding: 18px; margin-top: 14px;
+  background: var(--surface-2); position: relative;
+}
+.session-card.A { border-left: 3px solid var(--action); }
+.session-card.B { border-left: 3px solid var(--flame); }
+.session-card .hd {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--rule-soft);
+}
+.session-card .hd .name {
+  font-family: var(--font-display); font-size: 22px; font-weight: 800;
+  text-transform: uppercase; letter-spacing: -0.005em;
+  display: flex; align-items: baseline; gap: 12px;
+}
+.session-card .hd .name .badge {
+  font-family: var(--font-display); font-size: 28px; font-weight: 900;
+}
+.session-card.A .hd .name .badge { color: var(--action); }
+.session-card.B .hd .name .badge { color: var(--flame); }
+.session-card .hd .meta {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--ink-mute);
+}
+.exercise-headers {
+  display: grid; grid-template-columns: 22px 48px 1fr 70px 70px 70px;
+  gap: 10px; font-family: var(--font-mono); font-size: 9px;
+  text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-mute);
+  padding-bottom: 8px; border-bottom: 1px solid var(--rule-soft); margin-bottom: 4px;
+}
+.exercise-headers .h-center { text-align: center; }
+.exercise-row {
+  display: grid; grid-template-columns: 22px 48px 1fr 70px 70px 70px;
+  gap: 10px; align-items: center; padding: 10px 0;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.exercise-row:last-child { border-bottom: none; }
+.exercise-row .check-mini {
+  width: 18px; height: 18px; border: 1.5px solid var(--ink-mute);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; background: transparent;
+}
+.exercise-row .check-mini.done { background: var(--action); border-color: var(--action); }
+.exercise-row .check-mini.done::after { content: '✓'; color: var(--bg); font-size: 11px; font-weight: 700; }
+.exercise-row .ex-img {
+  width: 48px; height: 48px; object-fit: contain;
+  background: var(--surface-3); border: 1px solid var(--rule-soft);
+  transition: all 0.2s ease; cursor: zoom-in;
+}
+.exercise-row .ex-img:hover {
+  border-color: var(--action);
+  box-shadow: 0 0 12px var(--action-glow);
+  transform: scale(1.05);
+}
+.exercise-row .ex-img.placeholder {
+  background: var(--surface-2); opacity: 0.4;
+}
+.exercise-row .ex-name {
+  font-family: var(--font-display); font-size: 16px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.005em; line-height: 1.15;
+}
+.exercise-row .ex-name small {
+  font-family: var(--font-body); font-weight: 400; font-size: 11px;
+  color: var(--ink-soft); display: block; margin-top: 2px;
+  text-transform: none; letter-spacing: 0;
+}
+.exercise-row input.field {
+  border: 1px solid var(--rule); background: var(--bg); color: var(--ink);
+  padding: 6px 8px; font-family: var(--font-mono); font-size: 13px;
+  font-weight: 600; width: 100%; text-align: center;
+  font-feature-settings: 'tnum' on;
+}
+.exercise-row input.field:focus { outline: none; border-color: var(--action); }
+.exercise-row input.field::placeholder { color: var(--ink-mute); }
+
+/* ── BUTTONS ─────────────────────── */
+.btn {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.14em;
+  background: transparent; border: 1px solid var(--rule); padding: 10px 16px;
+  cursor: pointer; color: var(--ink-2); transition: all 0.15s ease;
+}
+.btn:hover { background: var(--surface-2); color: var(--ink); border-color: var(--ink-soft); }
+.btn.primary {
+  background: var(--action); color: var(--bg); border-color: var(--action);
+  font-weight: 700;
+}
+.btn.primary:hover { background: var(--pine-2); color: var(--ink); border-color: var(--pine-2); }
+.btn.flame { border-color: var(--flame); color: var(--flame); }
+.btn.flame:hover { background: var(--flame-soft); }
+.btn.gold { border-color: var(--gold); color: var(--gold); }
+.btn.gold:hover { background: rgba(255, 182, 39, 0.1); }
+.btn.danger:hover { border-color: var(--flame); color: var(--flame); background: var(--flame-soft); }
+
+.log-row { margin-top: 18px; display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* ── TIMER ─────────────────────────── */
+.timer-shell {
+  background: linear-gradient(180deg, var(--surface-2) 0%, var(--bg) 100%);
+  border: 1px solid var(--pine); padding: 24px; margin-top: 14px;
+  position: relative; overflow: hidden;
+}
+.timer-shell::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--action); box-shadow: 0 0 12px var(--action-glow);
+}
+.timer-shell .label-row {
+  display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;
+}
+.timer-shell .lbl {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--ink-mute);
+}
+.timer-shell .set-counter {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--ink-soft);
+}
+.timer-shell .set-counter b { color: var(--ink); }
+.timer-display {
+  font-family: var(--font-display); font-size: 88px; font-weight: 900;
+  letter-spacing: -0.04em; line-height: 0.9; text-align: center;
+  font-feature-settings: 'tnum' on; color: var(--ink);
+  margin: 8px 0 12px;
+}
+.timer-phase {
+  font-family: var(--font-display); font-size: 18px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em; text-align: center;
+  color: var(--ink-soft); min-height: 22px; margin-bottom: 16px;
+}
+.timer-phase.work { color: var(--flame); }
+.timer-phase.rest { color: var(--action); }
+.timer-progress {
+  height: 4px; background: var(--rule-soft); overflow: hidden; margin-bottom: 16px;
+}
+.timer-progress-fill {
+  height: 100%; background: var(--action); transition: width 0.5s linear;
+}
+.timer-phase.work ~ .timer-progress .timer-progress-fill,
+.timer-shell.work .timer-progress-fill { background: var(--flame); }
+.timer-ctrl { display: flex; gap: 8px; }
+.timer-ctrl button { flex: 1; }
+
+.timer-info {
+  font-family: var(--font-body); font-size: 12px; color: var(--ink-soft);
+  margin-top: 14px; line-height: 1.5;
+}
+.timer-info strong { color: var(--ink); font-weight: 600; }
+
+/* ── BASELINE ─────────────────────── */
+.baseline-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.baseline-input { display: flex; flex-direction: column; gap: 6px; }
+.baseline-input label {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--ink-soft); font-weight: 600;
+}
+.baseline-input input, .baseline-input textarea {
+  border: 1px solid var(--rule); background: var(--surface-2);
+  color: var(--ink); padding: 10px 12px;
+  font-family: var(--font-mono); font-size: 13px; resize: vertical;
+}
+.baseline-input input:focus, .baseline-input textarea:focus {
+  outline: none; border-color: var(--action); background: var(--bg);
+}
+.baseline-input input::placeholder, .baseline-input textarea::placeholder { color: var(--ink-mute); }
+.baseline-input.full { grid-column: 1 / -1; }
+
+/* ── WEEK METRICS ───────────────────── */
+.week-status {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 14px;
+}
+.metric {
+  background: var(--surface-2); padding: 18px 14px; text-align: center;
+  border: 1px solid var(--rule-soft); position: relative;
+}
+.metric::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--rule);
+}
+.metric.done::before { background: var(--action); }
+.metric .num {
+  font-family: var(--font-display); font-size: 44px; font-weight: 900;
+  line-height: 0.9; letter-spacing: -0.02em; color: var(--ink);
+}
+.metric .num .denom {
+  font-family: var(--font-mono); font-size: 14px; color: var(--ink-mute);
+  font-weight: 500; margin-left: 4px;
+}
+.metric .lbl {
+  font-family: var(--font-mono); font-size: 9px; text-transform: uppercase;
+  letter-spacing: 0.16em; color: var(--ink-soft); margin-top: 8px;
+}
+
+/* ── QUOTE ─────────────────────────── */
+.quote {
+  font-family: var(--font-display); font-style: normal;
+  font-size: 22px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.01em; line-height: 1.2; color: var(--ink-2);
+  padding: 28px 0; border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule); margin: 28px 0; text-align: center;
+  position: relative;
+}
+.quote::before {
+  content: '" "'; position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+  background: var(--bg); padding: 0 16px;
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em;
+  color: var(--action); text-transform: uppercase;
+}
+.quote cite {
+  display: block; font-family: var(--font-mono); font-size: 10px;
+  font-style: normal; text-transform: uppercase; letter-spacing: 0.18em;
+  margin-top: 12px; color: var(--ink-mute); font-weight: 500;
+}
+
+/* ── FOOTER ─────────────────────────── */
+footer {
+  margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--rule);
+  display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap;
+  font-family: var(--font-mono); font-size: 10px;
+  color: var(--ink-mute); letter-spacing: 0.1em; text-transform: uppercase;
+}
+
+.notes textarea { width: 100%; min-height: 80px; }
+
+/* ── SECTION SEPARATOR ─────────── */
+.section-title {
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--ink-mute); margin: 32px 0 12px;
+  display: flex; align-items: center; gap: 12px;
+}
+.section-title::before, .section-title::after {
+  content: ''; flex: 1; height: 1px; background: var(--rule-soft);
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="title-block">
+    <div class="doc-id">PERSONAL // TRAINING // 5 PILLARS</div>
+    <h1>Training<span class="accent">.</span> Five Pillars<span class="accent">.</span></h1>
+    <div class="sub">Bryan Johnson Blueprint · Anfänger-Track · 12-Wochen-Programm. Built to last decades, not days.</div>
+  </div>
+  <div class="meta-strip">
+    <div>
+      <span class="lbl">Today</span>
+      <span class="val mono" id="today-date">—</span>
+    </div>
+    <div>
+      <span class="lbl">Start</span>
+      <span class="val mono">29.05.26</span>
+    </div>
+    <div>
+      <span class="lbl">Re-Check</span>
+      <span class="val mono">21.08.26</span>
+    </div>
+  </div>
+</header>
+
+<!-- ── HERO ─────────────────────────── -->
+<section class="hero">
+  <div class="hero-head">
+    <div class="week-block">
+      <div class="lbl">Week</div>
+      <div class="week-num"><span id="week-num">1</span><span class="of">/ 12</span></div>
+      <div class="phase-tag" id="phase-tag">
+        <span id="phase-name">Habit-Aufbau</span>
+      </div>
+    </div>
+    <div class="streak-block">
+      <div class="lbl">Streak</div>
+      <div class="streak-num"><span id="streak-num">0</span></div>
+      <div class="desc">days · ≥ 2 micro-habits/day</div>
+    </div>
+    <div class="streak-block">
+      <div class="lbl">Phase Progress</div>
+      <div class="streak-num" style="color: var(--action);"><span id="phase-prog">0</span><span style="font-size:32px;">%</span></div>
+      <div class="desc" id="phase-week-label">week 1 of 4</div>
+    </div>
+  </div>
+
+  <div class="pillar-row">
+    <div class="pillar-title">5 Pillars · This Week</div>
+    <div class="pillar-grid">
+      <div class="pillar p1">
+        <span class="id">01 · Strength</span>
+        <span class="name">Kraft</span>
+        <div class="progress-bar"><div class="progress-fill" id="bar-kraft" style="width:0%"></div></div>
+        <span class="stat"><span class="big" id="stat-kraft-n">0</span>/3 sessions</span>
+      </div>
+      <div class="pillar p2">
+        <span class="id">02 · Endurance</span>
+        <span class="name">Zone 2</span>
+        <div class="progress-bar"><div class="progress-fill" id="bar-zone2" style="width:0%"></div></div>
+        <span class="stat"><span class="big" id="stat-zone2-n">0</span>/7 walks</span>
+      </div>
+      <div class="pillar p3">
+        <span class="id">03 · Power</span>
+        <span class="name">HIIT</span>
+        <div class="progress-bar"><div class="progress-fill" id="bar-hiit" style="width:0%"></div></div>
+        <span class="stat" id="stat-hiit">unlock W5</span>
+      </div>
+      <div class="pillar p4">
+        <span class="id">04 · Mobility</span>
+        <span class="name">Move</span>
+        <div class="progress-bar"><div class="progress-fill" id="bar-mobility" style="width:0%"></div></div>
+        <span class="stat"><span class="big" id="stat-mobility-n">0</span>/7 days</span>
+      </div>
+      <div class="pillar p5">
+        <span class="id">05 · Stability</span>
+        <span class="name">Balance</span>
+        <div class="progress-bar"><div class="progress-fill" id="bar-balance" style="width:0%"></div></div>
+        <span class="stat"><span class="big" id="stat-balance-n">0</span>/7 days</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TODAY / WEEK ─────────────────── -->
+<div class="row">
+  <div class="card">
+    <div class="head">
+      <h2 class="big">Heute</h2>
+      <span class="meta" id="today-long">—</span>
+    </div>
+    <div class="habit-list">
+      <div class="habit" data-habit="mobility">
+        <div class="check"></div>
+        <div class="body">
+          <div class="name">Morgen-Mobility · 5 Min</div>
+          <div class="desc">World's Greatest Stretch · Cat-Cow · Türrahmen · Knöchel</div>
+        </div>
+        <span class="pillar-tag">04 · Move</span>
+      </div>
+      <div class="habit" data-habit="walk">
+        <div class="check"></div>
+        <div class="body">
+          <div class="name">10-Min-Walk nach Mahlzeit</div>
+          <div class="desc">Apple Watch · Outdoor Walk · Talk-Test</div>
+        </div>
+        <span class="pillar-tag">02 · Zone 2</span>
+      </div>
+      <div class="habit" data-habit="balance">
+        <div class="check"></div>
+        <div class="body">
+          <div class="name">Single-Leg-Stand · 30-60s</div>
+          <div class="desc">Beim Zähneputzen · ab W4 mit geschlossenen Augen</div>
+        </div>
+        <span class="pillar-tag">05 · Balance</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="head">
+      <h2 class="big">Diese Woche</h2>
+      <span class="meta" id="week-label">KW —</span>
+    </div>
+    <div class="week-grid" id="week-grid"></div>
+    <div style="display:flex; gap:14px; flex-wrap:wrap; font-family: var(--font-mono); font-size:10px; text-transform:uppercase; letter-spacing:0.12em; color:var(--ink-mute); margin-top:8px;">
+      <span><span style="display:inline-block; width:10px; height:10px; background:var(--action); margin-right:6px; vertical-align:middle;"></span>A · Push</span>
+      <span><span style="display:inline-block; width:10px; height:10px; background:var(--flame); margin-right:6px; vertical-align:middle;"></span>B · Pull</span>
+      <span><span style="display:inline-block; width:10px; height:10px; background:var(--gold); margin-right:6px; vertical-align:middle;"></span>HIIT</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── STRENGTH SESSIONS ──────────────── -->
+<div class="section-title">Strength Sessions · Full-Body 3× Week</div>
+<div class="card">
+
+  <div class="session-card A">
+    <div class="hd">
+      <div class="name"><span class="badge">A</span>Push · 45 Min</div>
+      <div class="meta">Beinpresse · Brust · Latzug · Schulter · Plank</div>
+    </div>
+    <div class="exercise-headers">
+      <span></span>
+      <span></span>
+      <span>Exercise</span>
+      <span class="h-center">Sets</span>
+      <span class="h-center">Reps</span>
+      <span class="h-center">KG</span>
+    </div>
+    <div class="exercise-row" data-ex="A-warmup">
+      <div class="check-mini" data-check="A-warmup"></div>
+      <div class="ex-img placeholder" aria-hidden="true"></div>
+      <div class="ex-name">Warm-Up<small>5 Min Crosstrainer · HF leicht hoch</small></div>
+      <input class="field" type="text" data-input="A-warmup-sets" value="—">
+      <input class="field" type="text" data-input="A-warmup-reps" value="—">
+      <input class="field" type="text" data-input="A-warmup-kg" value="—">
+    </div>
+    <div class="exercise-row" data-ex="A-beinpresse">
+      <div class="check-mini" data-check="A-beinpresse"></div>
+      <img class="ex-img" src="assets/exercises/01_leg-press.png" alt="Beinpresse" loading="lazy">
+      <div class="ex-name">Beinpresse<small>Knie-schonend · Fuß mittig-hoch</small></div>
+      <input class="field" type="text" data-input="A-beinpresse-sets" placeholder="3">
+      <input class="field" type="text" data-input="A-beinpresse-reps" placeholder="10-12">
+      <input class="field" type="text" data-input="A-beinpresse-kg" placeholder="0">
+    </div>
+    <div class="exercise-row" data-ex="A-brust">
+      <div class="check-mini" data-check="A-brust"></div>
+      <img class="ex-img" src="assets/exercises/02_chest-press.png" alt="Brustpresse" loading="lazy">
+      <div class="ex-name">Brustpresse<small>Maschine · kontrolliert</small></div>
+      <input class="field" type="text" data-input="A-brust-sets" placeholder="3">
+      <input class="field" type="text" data-input="A-brust-reps" placeholder="8-12">
+      <input class="field" type="text" data-input="A-brust-kg" placeholder="0">
+    </div>
+    <div class="exercise-row" data-ex="A-latzug">
+      <div class="check-mini" data-check="A-latzug"></div>
+      <img class="ex-img" src="assets/exercises/03_lat-pulldown.png" alt="Latzug" loading="lazy">
+      <div class="ex-name">Latzug breit<small>Bis obere Brust ziehen</small></div>
+      <input class="field" type="text" data-input="A-latzug-sets" placeholder="3">
+      <input class="field" type="text" data-input="A-latzug-reps" placeholder="8-12">
+      <input class="field" type="text" data-input="A-latzug-kg" placeholder="0">
+    </div>
+    <div class="exercise-row" data-ex="A-shoulder">
+      <div class="check-mini" data-check="A-shoulder"></div>
+      <img class="ex-img" src="assets/exercises/04_shoulder-press.png" alt="Schulterdrücken" loading="lazy">
+      <div class="ex-name">Schulterdrücken<small>Maschine · sitzend</small></div>
+      <input class="field" type="text" data-input="A-shoulder-sets" placeholder="3">
+      <input class="field" type="text" data-input="A-shoulder-reps" placeholder="10-12">
+      <input class="field" type="text" data-input="A-shoulder-kg" placeholder="0">
+    </div>
+    <div class="exercise-row" data-ex="A-plank">
+      <div class="check-mini" data-check="A-plank"></div>
+      <img class="ex-img" src="assets/exercises/05_plank.png" alt="Plank" loading="lazy">
+      <div class="ex-name">Plank<small>Core · Sek pro Satz</small></div>
+      <input class="field" type="text" data-input="A-plank-sets" placeholder="3">
+      <input class="field" type="text" data-input="A-plank-reps" placeholder="30-45">
+      <input class="field" type="text" data-input="A-plank-kg" value="—">
+    </div>
+  </div>
+
+  <div class="session-card B">
+    <div class="hd">
+      <div class="name"><span class="badge">B</span>Pull · 45 Min</div>
+      <div class="meta">RDL · Rudern · Beinbeuger · Curl · Side Plank</div>
+    </div>
+    <div class="exercise-headers">
+      <span></span>
+      <span></span>
+      <span>Exercise</span>
+      <span class="h-center">Sets</span>
+      <span class="h-center">Reps</span>
+      <span class="h-center">KG</span>
+    </div>
+    <div class="exercise-row" data-ex="B-warmup">
+      <div class="check-mini" data-check="B-warmup"></div>
+      <div class="ex-img placeholder" aria-hidden="true"></div>
+      <div class="ex-name">Warm-Up<small>5 Min Crosstrainer · HF leicht hoch</small></div>
+      <input class="field" type="text" data-input="B-warmup-sets" value="—">
+      <input class="field" type="text" data-input="B-warmup-reps" value="—">
+      <input class="field" type="text" data-input="B-warmup-kg" value="—">
+    </div>
+    <div class="exercise-row" data-ex="B-rdl">
+      <div class="check-mini" data-check="B-rdl"></div>
+      <img class="ex-img" src="assets/exercises/06_rdl.png" alt="RDL" loading="lazy">
+      <div class="ex-name">RDL · Rumänisches Kreuzheben<small>Kurzhantel · Hip-Hinge · neutrale WS</small></div>
+      <input class="field" type="text" data-input="B-rdl-sets" placeholder="3">
+      <input class="field" type="text" data-input="B-rdl-reps" placeholder="8-10">
+      <input class="field" type="text" data-input="B-rdl-kg" placeholder="0">
+    </div>
+    <div class="exercise-row" data-ex="B-rudern">
+      <div class="check-mini" data-check="B-rudern"></div>
+      <img class="ex-img" src="assets/exercises/07_seated-row.png" alt="Rudern" loading="lazy">
+      <div class="ex-name">Rudern<small>Maschine · Schulterblätter aktiv</small></div>
+      <input class="field" type="text" data-input="B-rudern-sets" placeholder="3">
+      <input class="field" type="text" data-input="B-rudern-reps" placeholder="10-12">
+      <input class="field" type="text" data-input="B-rudern-kg" placeholder="0">
+    </div>
+    <div class="exercise-row" data-ex="B-beinbeuger">
+      <div class="check-mini" data-check="B-beinbeuger"></div>
+      <img class="ex-img" src="assets/exercises/08_leg-curl.png" alt="Beinbeuger" loading="lazy">
+      <div class="ex-name">Beinbeuger<small>Maschine · Hamstrings · knie-schonend</small></div>
+      <input class="field" type="text" data-input="B-beinbeuger-sets" placeholder="3">
+      <input class="field" type="text" data-input="B-beinbeuger-reps" placeholder="10-12">
+      <input class="field" type="text" data-input="B-beinbeuger-kg" placeholder="0">
+    </div>
+    <div class="exercise-row" data-ex="B-curl">
+      <div class="check-mini" data-check="B-curl"></div>
+      <img class="ex-img" src="assets/exercises/09_bicep-curl.png" alt="Bizeps-Curl" loading="lazy">
+      <div class="ex-name">Bizeps-Curl<small>Kurzhantel · Aesthetics-Booster</small></div>
+      <input class="field" type="text" data-input="B-curl-sets" placeholder="3">
+      <input class="field" type="text" data-input="B-curl-reps" placeholder="10-12">
+      <input class="field" type="text" data-input="B-curl-kg" placeholder="0">
+    </div>
+    <div class="exercise-row" data-ex="B-sideplank">
+      <div class="check-mini" data-check="B-sideplank"></div>
+      <img class="ex-img" src="assets/exercises/10_side-plank.png" alt="Side Plank" loading="lazy">
+      <div class="ex-name">Side Plank<small>2 × Seite · schräge Bauchmuskeln</small></div>
+      <input class="field" type="text" data-input="B-sideplank-sets" placeholder="2/S">
+      <input class="field" type="text" data-input="B-sideplank-reps" placeholder="20-30">
+      <input class="field" type="text" data-input="B-sideplank-kg" value="—">
+    </div>
+  </div>
+
+  <div class="log-row">
+    <button class="btn primary" id="log-A">Session A · Logged</button>
+    <button class="btn flame" id="log-B">Session B · Logged</button>
+    <button class="btn gold" id="log-hiit">Norwegian 4×4 · Done</button>
+  </div>
+</div>
+
+<!-- ── HIIT TIMER + BASELINE ───────── -->
+<div class="row" style="margin-top:20px;">
+  <div class="card">
+    <div class="head">
+      <h2 class="big">Norwegian 4×4</h2>
+      <span class="meta" id="hiit-mode-label">Light · 3×3 · unlock W5</span>
+    </div>
+    <div class="timer-shell" id="timer-shell">
+      <div class="label-row">
+        <span class="lbl">Interval</span>
+        <span class="set-counter" id="timer-set-counter">Set <b>1</b> / 3</span>
+      </div>
+      <div class="timer-display" id="timer-display">03:00</div>
+      <div class="timer-phase" id="timer-phase">Ready · 3×3 light</div>
+      <div class="timer-progress"><div class="timer-progress-fill" id="timer-progress"></div></div>
+      <div class="timer-ctrl">
+        <button class="btn primary" id="timer-start">Start</button>
+        <button class="btn" id="timer-reset">Reset</button>
+        <button class="btn" id="timer-mode">Light → Full</button>
+      </div>
+    </div>
+    <p class="timer-info">
+      <strong>Light:</strong> 3 × (3 Min hart + 3 Min easy) · <strong>Full:</strong> 4 × (4 Min hart + 3 Min easy)<br>
+      Talk-Test in hart-Phase: nur einzelne Worte möglich.
+    </p>
+  </div>
+
+  <div class="card">
+    <div class="head">
+      <h2 class="big">Baseline · Week 1</h2>
+      <span class="meta">Vergleich am 21.08.26</span>
+    </div>
+    <div class="baseline-grid">
+      <div class="baseline-input">
+        <label>Gewicht (kg, nüchtern)</label>
+        <input type="text" data-base="weight" placeholder="—">
+      </div>
+      <div class="baseline-input">
+        <label>VO₂max (Apple Watch)</label>
+        <input type="text" data-base="vo2max" placeholder="—">
+      </div>
+      <div class="baseline-input">
+        <label>SLS offen (Sek · re/li)</label>
+        <input type="text" data-base="sls-open" placeholder="—">
+      </div>
+      <div class="baseline-input">
+        <label>SLS geschl. (Sek · re/li)</label>
+        <input type="text" data-base="sls-closed" placeholder="—">
+      </div>
+      <div class="baseline-input full">
+        <label>Foto Front + Seite · Pfad</label>
+        <input type="text" data-base="photo" placeholder="~/Photos/Baseline-2026-05-29">
+      </div>
+      <div class="baseline-input full">
+        <label>Notizen</label>
+        <textarea data-base="notes" placeholder="Empfindungen · Schmerzpunkte · Energielevel"></textarea>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── WEEK STATUS ─────────────────── -->
+<div class="card" style="margin-top:20px;">
+  <div class="head">
+    <h2 class="big">Week Recap</h2>
+    <span class="meta">Sonntag · 2 Min · auto-saved</span>
+  </div>
+  <div class="week-status">
+    <div class="metric" id="metric-sessions">
+      <div class="num"><span id="m-sessions-n">0</span><span class="denom">/3</span></div>
+      <div class="lbl">Anchor Sessions</div>
+    </div>
+    <div class="metric" id="metric-mobility">
+      <div class="num"><span id="m-mobility-n">0</span><span class="denom">/7</span></div>
+      <div class="lbl">Morning Mobility</div>
+    </div>
+    <div class="metric" id="metric-walks">
+      <div class="num"><span id="m-walks-n">0</span><span class="denom">/7</span></div>
+      <div class="lbl">Meal Walks</div>
+    </div>
+    <div class="metric" id="metric-balance">
+      <div class="num"><span id="m-balance-n">0</span><span class="denom">/7</span></div>
+      <div class="lbl">Balance</div>
+    </div>
+  </div>
+
+  <div class="notes" style="margin-top:18px;">
+    <div class="baseline-input">
+      <label>Notes · diese Woche</label>
+      <textarea id="week-notes" placeholder="Was lief gut? Was war schwer? Knie-Status? Energie?"></textarea>
+    </div>
+  </div>
+</div>
+
+<!-- ── QUOTE ─────────────────────────── -->
+<div class="quote">
+  You want to be the oldest person in the gym,<br>
+  not the youngest in the nursing home.
+  <cite>— Bryan Johnson</cite>
+</div>
+
+<footer>
+  <div>5 Pillars · Athletic Dark v1 · Mineral Carbon × Pine</div>
+  <div style="display:flex; gap:8px;">
+    <button class="btn" id="export-data">Export JSON</button>
+    <button class="btn danger" id="reset-week">Reset Week</button>
+  </div>
+</footer>
+
+<script>
+(() => {
+  'use strict';
+  const KEY = 'training-dashboard-v2';
+  const START_DATE = new Date(2026, 4, 29);
+  const PHASES = [
+    { range: [1, 4], name: 'Habit-Aufbau' },
+    { range: [5, 8], name: 'Build' },
+    { range: [9, 12], name: 'Progression' }
+  ];
+  const DOW = ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'];
+  const MON = ['Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'];
+
+  const load = () => { try { return JSON.parse(localStorage.getItem(KEY) || '{}'); } catch { return {}; } };
+  const save = (s) => localStorage.setItem(KEY, JSON.stringify(s));
+  let state = load();
+  ['habits', 'sessions', 'exercises', 'baseline', 'weekNotes'].forEach(k => { if (!state[k]) state[k] = {}; });
+
+  const ymd = (d) => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+  const today = new Date();
+  const todayKey = ymd(today);
+  const dayDiff = Math.floor((today - START_DATE) / 86400000);
+  const weekNum = Math.max(1, Math.min(12, Math.floor(dayDiff / 7) + 1));
+  const phase = PHASES.find(p => weekNum >= p.range[0] && weekNum <= p.range[1]) || PHASES[0];
+  const weekInPhase = weekNum - phase.range[0] + 1;
+  const phaseLength = phase.range[1] - phase.range[0] + 1;
+  const phaseProgress = Math.round((weekInPhase / phaseLength) * 100);
+
+  const weekStart = (() => {
+    const d = new Date(today); const day = d.getDay();
+    d.setDate(d.getDate() + (day === 0 ? -6 : 1 - day));
+    d.setHours(0,0,0,0); return d;
+  })();
+
+  // ── HEADER ────────────────────────
+  document.getElementById('today-date').textContent = today.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: '2-digit' });
+  document.getElementById('today-long').textContent = `${DOW[today.getDay()]} · ${today.getDate()}. ${MON[today.getMonth()]}`;
+  document.getElementById('week-num').textContent = String(weekNum).padStart(2, '0');
+  document.getElementById('phase-name').textContent = phase.name;
+  document.getElementById('phase-prog').textContent = phaseProgress;
+  document.getElementById('phase-week-label').textContent = `week ${weekInPhase} of ${phaseLength}`;
+
+  const kw = (() => {
+    const d = new Date(weekStart); d.setHours(0,0,0,0);
+    d.setDate(d.getDate() + 3 - (d.getDay() + 6) % 7);
+    const w1 = new Date(d.getFullYear(), 0, 4);
+    return 1 + Math.round(((d - w1) / 86400000 - 3 + (w1.getDay() + 6) % 7) / 7);
+  })();
+  document.getElementById('week-label').textContent = `KW ${kw}`;
+
+  // ── HABITS ────────────────────────
+  const habitToday = () => state.habits[todayKey] || {};
+  const renderHabits = () => {
+    const t = habitToday();
+    document.querySelectorAll('.habit').forEach(el => {
+      el.classList.toggle('done', !!t[el.dataset.habit]);
+    });
+  };
+  document.querySelectorAll('.habit').forEach(el => {
+    el.addEventListener('click', () => {
+      const k = el.dataset.habit;
+      if (!state.habits[todayKey]) state.habits[todayKey] = {};
+      state.habits[todayKey][k] = !state.habits[todayKey][k];
+      save(state); renderHabits(); renderStats(); renderStreak();
+    });
+  });
+
+  // ── STREAK ─────────────────────────
+  const renderStreak = () => {
+    let streak = 0;
+    let cursor = new Date(today);
+    while (true) {
+      const key = ymd(cursor);
+      const h = state.habits[key] || {};
+      const count = (h.mobility ? 1 : 0) + (h.walk ? 1 : 0) + (h.balance ? 1 : 0);
+      if (count >= 2) {
+        streak++; cursor.setDate(cursor.getDate() - 1);
+      } else {
+        if (key === todayKey && count < 2) { cursor.setDate(cursor.getDate() - 1); continue; }
+        break;
+      }
+      if (streak > 365) break;
+    }
+    document.getElementById('streak-num').textContent = streak;
+  };
+
+  // ── WEEK GRID ──────────────────────
+  const renderWeekGrid = () => {
+    const grid = document.getElementById('week-grid');
+    grid.innerHTML = '';
+    for (let i = 0; i < 7; i++) {
+      const d = new Date(weekStart); d.setDate(d.getDate() + i);
+      const key = ymd(d);
+      const isToday = key === todayKey;
+      const sess = state.sessions[key];
+      const cell = document.createElement('div');
+      cell.className = 'day-cell';
+      if (isToday) cell.classList.add('today');
+      if (sess === 'A') cell.classList.add('session-a', 'done');
+      else if (sess === 'B') cell.classList.add('session-b', 'done');
+      else if (sess === 'HIIT') cell.classList.add('session-hiit', 'done');
+      cell.innerHTML = `<div class="dow">${DOW[d.getDay()]}</div><div class="dom">${String(d.getDate()).padStart(2,'0')}</div><div class="label">${sess === 'A' ? 'A' : sess === 'B' ? 'B' : sess === 'HIIT' ? 'HIIT' : ''}</div>`;
+      grid.appendChild(cell);
+    }
+  };
+
+  // ── EXERCISES ──────────────────────
+  const renderExercises = () => {
+    document.querySelectorAll('input[data-input]').forEach(inp => {
+      const k = inp.dataset.input;
+      if (state.exercises[k]) inp.value = state.exercises[k];
+    });
+    document.querySelectorAll('.check-mini').forEach(c => {
+      c.classList.toggle('done', !!state.exercises[c.dataset.check + '_done']);
+    });
+  };
+  document.querySelectorAll('input[data-input]').forEach(inp => {
+    inp.addEventListener('input', () => { state.exercises[inp.dataset.input] = inp.value; save(state); });
+  });
+  document.querySelectorAll('.check-mini').forEach(c => {
+    c.addEventListener('click', () => {
+      const k = c.dataset.check + '_done';
+      state.exercises[k] = !state.exercises[k];
+      save(state); renderExercises();
+    });
+  });
+
+  // ── LOG BUTTONS ────────────────────
+  const logSession = (type) => {
+    state.sessions[todayKey] = type;
+    save(state); renderWeekGrid(); renderStats();
+    if (type === 'A' || type === 'B') {
+      document.querySelectorAll('.check-mini').forEach(c => {
+        if (c.dataset.check.startsWith(type + '-')) state.exercises[c.dataset.check + '_done'] = false;
+      });
+      save(state); renderExercises();
+    }
+  };
+  document.getElementById('log-A').addEventListener('click', () => logSession('A'));
+  document.getElementById('log-B').addEventListener('click', () => logSession('B'));
+  document.getElementById('log-hiit').addEventListener('click', () => logSession('HIIT'));
+
+  // ── BASELINE / NOTES ───────────────
+  document.querySelectorAll('[data-base]').forEach(el => {
+    const k = el.dataset.base;
+    if (state.baseline[k]) el.value = state.baseline[k];
+    el.addEventListener('input', () => { state.baseline[k] = el.value; save(state); });
+  });
+  const weekKey = ymd(weekStart);
+  const wn = document.getElementById('week-notes');
+  if (state.weekNotes[weekKey]) wn.value = state.weekNotes[weekKey];
+  wn.addEventListener('input', () => { state.weekNotes[weekKey] = wn.value; save(state); });
+
+  // ── STATS ──────────────────────────
+  const renderStats = () => {
+    let s = 0, hi = 0, mo = 0, wa = 0, ba = 0;
+    for (let i = 0; i < 7; i++) {
+      const d = new Date(weekStart); d.setDate(d.getDate() + i);
+      const key = ymd(d);
+      const sess = state.sessions[key];
+      if (sess === 'A' || sess === 'B') s++;
+      if (sess === 'HIIT') hi++;
+      const h = state.habits[key] || {};
+      if (h.mobility) mo++; if (h.walk) wa++; if (h.balance) ba++;
+    }
+    const pct = (n, d) => Math.min(100, (n / d) * 100);
+    document.getElementById('bar-kraft').style.width = pct(s, 3) + '%';
+    document.getElementById('stat-kraft-n').textContent = s;
+    document.getElementById('bar-zone2').style.width = pct(wa, 7) + '%';
+    document.getElementById('stat-zone2-n').textContent = wa;
+    if (weekNum >= 5) {
+      document.getElementById('bar-hiit').style.width = pct(hi, 1) + '%';
+      document.getElementById('stat-hiit').innerHTML = `<span class="big">${hi}</span>/1 hiit`;
+    }
+    document.getElementById('bar-mobility').style.width = pct(mo, 7) + '%';
+    document.getElementById('stat-mobility-n').textContent = mo;
+    document.getElementById('bar-balance').style.width = pct(ba, 7) + '%';
+    document.getElementById('stat-balance-n').textContent = ba;
+
+    document.getElementById('m-sessions-n').textContent = s;
+    document.getElementById('m-mobility-n').textContent = mo;
+    document.getElementById('m-walks-n').textContent = wa;
+    document.getElementById('m-balance-n').textContent = ba;
+    document.getElementById('metric-sessions').classList.toggle('done', s >= 2);
+    document.getElementById('metric-mobility').classList.toggle('done', mo >= 5);
+    document.getElementById('metric-walks').classList.toggle('done', wa >= 4);
+    document.getElementById('metric-balance').classList.toggle('done', ba >= 5);
+  };
+
+  // ── TIMER ──────────────────────────
+  const timer = {
+    mode: 'light', sets: 3, workSec: 180, restSec: 180,
+    currentSet: 1, phase: 'work', remaining: 180, intervalId: null, running: false
+  };
+  const fmt = (s) => `${String(Math.floor(s/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`;
+  const setTimerMode = (mode) => {
+    timer.mode = mode;
+    if (mode === 'full') { timer.sets = 4; timer.workSec = 240; timer.restSec = 180; }
+    else { timer.sets = 3; timer.workSec = 180; timer.restSec = 180; }
+    resetTimer();
+    document.getElementById('hiit-mode-label').textContent = mode === 'full' ? 'Full · 4×4 · unlock W9' : 'Light · 3×3 · unlock W5';
+    document.getElementById('timer-mode').textContent = mode === 'full' ? 'Full → Light' : 'Light → Full';
+  };
+  const updateDisplay = () => {
+    document.getElementById('timer-display').textContent = fmt(timer.remaining);
+    document.getElementById('timer-set-counter').innerHTML = `Set <b>${timer.currentSet}</b> / ${timer.sets}`;
+    const phaseEl = document.getElementById('timer-phase');
+    const shell = document.getElementById('timer-shell');
+    shell.classList.remove('work', 'rest');
+    if (!timer.running && timer.currentSet === 1 && timer.phase === 'work' && timer.remaining === timer.workSec) {
+      phaseEl.textContent = `Ready · ${timer.mode === 'full' ? '4×4 full' : '3×3 light'}`;
+      phaseEl.className = 'timer-phase';
+    } else {
+      phaseEl.textContent = timer.phase === 'work' ? 'WORK · HART' : 'REST · EASY';
+      phaseEl.className = 'timer-phase ' + timer.phase;
+      shell.classList.add(timer.phase);
+    }
+    const total = timer.phase === 'work' ? timer.workSec : timer.restSec;
+    document.getElementById('timer-progress').style.width = ((total - timer.remaining) / total * 100) + '%';
+  };
+  const tick = () => {
+    timer.remaining--;
+    if (timer.remaining < 0) {
+      if (timer.phase === 'work') {
+        timer.phase = 'rest'; timer.remaining = timer.restSec;
+      } else {
+        if (timer.currentSet >= timer.sets) {
+          stopTimer();
+          document.getElementById('timer-phase').textContent = '✓ COMPLETE · log HIIT';
+          document.getElementById('timer-phase').className = 'timer-phase rest';
+          return;
+        }
+        timer.currentSet++; timer.phase = 'work'; timer.remaining = timer.workSec;
+      }
+    }
+    updateDisplay();
+  };
+  const startTimer = () => {
+    if (timer.running) { stopTimer(); }
+    else {
+      timer.running = true;
+      timer.intervalId = setInterval(tick, 1000);
+      document.getElementById('timer-start').textContent = 'Pause';
+    }
+  };
+  const stopTimer = () => {
+    timer.running = false;
+    if (timer.intervalId) clearInterval(timer.intervalId);
+    document.getElementById('timer-start').textContent = 'Start';
+  };
+  const resetTimer = () => {
+    stopTimer();
+    timer.currentSet = 1; timer.phase = 'work'; timer.remaining = timer.workSec;
+    updateDisplay();
+  };
+  document.getElementById('timer-start').addEventListener('click', startTimer);
+  document.getElementById('timer-reset').addEventListener('click', resetTimer);
+  document.getElementById('timer-mode').addEventListener('click', () => setTimerMode(timer.mode === 'light' ? 'full' : 'light'));
+
+  // ── EXPORT / RESET ─────────────────
+  document.getElementById('export-data').addEventListener('click', () => {
+    const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = `training-data-${todayKey}.json`;
+    a.click(); URL.revokeObjectURL(url);
+  });
+  document.getElementById('reset-week').addEventListener('click', () => {
+    if (!confirm('Diese Woche reset? Habits, Sessions, Notes der aktuellen Woche werden gelöscht. Baseline + Exercise-Werte bleiben.')) return;
+    for (let i = 0; i < 7; i++) {
+      const d = new Date(weekStart); d.setDate(d.getDate() + i);
+      const key = ymd(d);
+      delete state.habits[key]; delete state.sessions[key];
+    }
+    delete state.weekNotes[ymd(weekStart)];
+    save(state); location.reload();
+  });
+
+  // ── INIT ───────────────────────────
+  renderHabits(); renderWeekGrid(); renderExercises(); renderStreak(); renderStats();
+  setTimerMode('light'); updateDisplay();
+})();
+</script>
+</body>
+</html>
